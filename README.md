@@ -11,9 +11,13 @@
 ### ⚙️ Installation 
 ```bash
 git clone https://github.com/leoyeh62/JetPunkLiveListener.git
+
 cd JetPunkLiveListener
+
 npm install
+
 node liveListener.js
+
 
 
 
