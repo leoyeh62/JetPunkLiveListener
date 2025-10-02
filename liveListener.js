@@ -258,6 +258,7 @@ async function connectToLiveChatWithRetry(username, retries = 5, delay = 3000) {
     await page.evaluate(() => {
       window.scrollBy(0, 500);
     });
+    isFinished();
   } catch (error) {
     console.error('Connection failed:', error);
     process.exit(1);
