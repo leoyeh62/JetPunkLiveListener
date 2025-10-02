@@ -1,6 +1,7 @@
 const puppeteer = require('puppeteer');
 const { WebcastPushConnection } = require('tiktok-live-connector');
 const fs = require('fs');
+const { timeout } = require('puppeteer');
 
 const countries = JSON.parse(fs.readFileSync('./countries.json', 'utf8'));
 const guessedCountries = new Set();
@@ -97,10 +98,21 @@ async function pressStartButton() {
     console.log('Bouton start non-trouvé.');
   }
 }
+async function isFinished() {
+  while (true) {
+    try {
+      await page.waitForSelector('#retake-quiz', { timeout: 5000 });
+      leaderboardDisplay();
+      await new Promise((resolve) => setTimeout(resolve, 10000));
+      leaderboardHide();
+      await page.click('#retry-quiz');
+    } catch (error) {}
+  }
+}
 
 async function showGuessOnScreen(username, country) {
   if (!playerExists(username)) {
-    joueurs.push({ pseudo: username, score: 0 });
+    joueurs.push({ pseudo: username, score: 1 });
   } else {
     let indice = getPlayerIndex(username);
     joueurs[indice].score += 1;
@@ -182,6 +194,17 @@ async function leaderboardDisplay(players) {
     }, topPlayers);
   } catch (error) {
     console.log('Erreur leaderboard:', error);
+  }
+}
+
+async function leaderboardHide() {
+  try {
+    await page.evaluate(() => {
+      const el = document.getElementById('leaderboard');
+      if (el) el.remove();
+    });
+  } catch (error) {
+    console.log('Erreur hide leaderboard:', error);
   }
 }
 
