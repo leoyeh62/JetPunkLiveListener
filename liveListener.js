@@ -101,11 +101,23 @@ async function pressStartButton() {
 async function isFinished() {
   while (true) {
     try {
-      await page.waitForSelector('#retake-quiz', { timeout: 5000 });
-      leaderboardDisplay();
-      await new Promise((resolve) => setTimeout(resolve, 10000));
-      leaderboardHide();
-      await page.click('#retry-quiz');
+      retake = await page.waitForSelector('#retake-quiz', { visible: true, timeout: 5000 });
+      if (retake) {
+        console.log('affichage du tableau');
+        await leaderboardDisplay(joueurs);
+        await new Promise((resolve) => setTimeout(resolve, 10000));
+        leaderboardHide();
+        console.log('restarting quiz');
+        await page.evaluate(() => {
+          const btn = document.querySelector('#blue close auto-focus');
+          const btn1 = document.querySelector('#retake-quiz');
+          if (btn) btn.click();
+          if (btn1) btn1.click();
+        });
+        joueurs = [];
+        guessedCountries.clear();
+        pressStartButton();
+      }
     } catch (error) {}
   }
 }
@@ -162,7 +174,7 @@ async function leaderboardDisplay(players) {
       container.style.borderRadius = '8px';
       container.style.color = 'white';
       container.style.fontFamily = 'Arial, sans-serif';
-      container.style.maxWidth = '250px';
+      container.style.maxWidth = '400px';
 
       const title = document.createElement('div');
       title.innerHTML = '<strong>Leaderboard</strong>';
@@ -182,7 +194,7 @@ async function leaderboardDisplay(players) {
         entry.style.fontSize = fontSize;
         entry.style.marginBottom = '5px';
 
-        entry.innerHTML = `<strong>#${index + 1} ${player.username}</strong>: ${player.score} pts`;
+        entry.innerHTML = `<strong>#${index + 1} ${player.pseudo}</strong>: ${player.score} pts`;
         container.appendChild(entry);
       });
 
@@ -218,7 +230,7 @@ async function connectToLiveChatWithRetry(username, retries = 5, delay = 3000) {
   let attempt = 0;
   while (attempt < retries) {
     try {
-      const connection = new WebcastPushConnection(username);
+      const connection = new WebcastPushConnection(username, { processInitialData: false });
       connection.on('chat', async (data) => {
         const msg = data.comment.trim();
 
