@@ -1,5 +1,7 @@
 ﻿# ![logo-small](./assets/logo-rbg-small.png) JetPunkLiveListener
 
+ Simple script JavaScript qui permet de répondre à un quiz en direct sur tiktok à l'aide d'une library Node.js nommée "TikTok-Live-Connector"
+
 ## 🚀 Fonctionnalités
 
 - Ouvrir une page internet sur le site [https://www.jetpunk.com/quizzes/how-many-countries-can-you-name](JetPunk).
@@ -25,4 +27,5 @@ node liveListener.js
 
 
 ```
+
 
