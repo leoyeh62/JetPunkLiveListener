@@ -1,0 +1,26 @@
+{
+  "name": "projet",
+  "version": "1.0.0",
+  "description": "- Ouvrir une page internet sur le site [https://www.jetpunk.com/quizzes/how-many-countries-can-you-name](JetPunk).\r - Gestion automatique des cookies.\r - Connection au live Tiktok.\r - Utilisation du chat de Live pour compléter le jeu.\r - Implémentation d'un score pour chaque joueurs.\r - Mise en place d'un leaderboard pour afficher le classement des joueurs en fin de partie\r - Implémentation d'une fonction restart pour relancer dès qu'une partie est terminée.",
+  "main": "liveListener.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "node-fetch": "^3",
+    "puppeteer": "^24.6.1",
+    "tiktok-live-connector": "^2.1.0",
+    "uuid": "^9.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leoyeh62/JetPunkLiveListener.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leoyeh62/JetPunkLiveListener/issues"
+  },
+  "homepage": "https://github.com/leoyeh62/JetPunkLiveListener#readme"
+}
