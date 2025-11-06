@@ -1,4 +1,6 @@
-﻿# 🔴 JetPunkLiveListener
+﻿# ![logo-small](./assets/logo-rbg-small.png) JetPunkLiveListener
+
+Simple script JavaScript qui permet de répondre à un quiz en direct sur tiktok à l'aide d'une library Node.js nommée "TikTok-Live-Connector"
 
 ## 🚀 Fonctionnalités
 
@@ -10,7 +12,11 @@
 - Mise en place d'un leaderboard pour afficher le classement des joueurs en fin de partie
 - Implémentation d'une fonction restart pour relancer dès qu'une partie est terminée.
 
-### ⚙️ Installation
+### 🧩 Dépendance
+
+- 🟢 Node.js (>=18)
+
+#### ⚙️ Installation
 
 ```bash
 git clone https://github.com/leoyeh62/JetPunkLiveListener.git
