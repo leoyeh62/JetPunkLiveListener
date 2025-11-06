@@ -12,7 +12,11 @@
 - Mise en place d'un leaderboard pour afficher le classement des joueurs en fin de partie
 - Implémentation d'une fonction restart pour relancer dès qu'une partie est terminée.
 
-### ⚙️ Installation
+#### 🧩 Dépendance
+- 🟢 Node.js (>=18)
+
+
+#### ⚙️ Installation
 
 ```bash
 git clone https://github.com/leoyeh62/JetPunkLiveListener.git
@@ -27,5 +31,6 @@ node liveListener.js
 
 
 ```
+
 
 
