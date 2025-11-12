@@ -229,8 +229,9 @@ async function connectToLiveChatWithRetry(username, retries = 5, delay = 3000) {
   while (attempt < retries) {
     try {
       const connection = new WebcastPushConnection(username, { processInitialData: false });
-      
+      const connectDate = Date.now();
       connection.on('chat', async (data) => {
+        if (Date.now() - connectDate < 8000) return;
         const msg = data.comment.trim();
 
         if (isValidCountry(msg) && !guessedCountries.has(msg)) {
